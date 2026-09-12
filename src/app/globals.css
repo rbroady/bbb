@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Background */
+  --color-bg-app: #F2F0E9;
+  --color-bg-canvas: #F8F7F2;
+  --color-bg-surface: #FCFBF7;
+  --color-bg-subtle: #ECEAE2;
+  --color-bg-hover: #E7E5DD;
+  --color-bg-active: #DFDED4;
+
+  /* Text */
+  --color-text-primary: #20231E;
+  --color-text-secondary: #666A61;
+  --color-text-tertiary: #8A8D84;
+  --color-text-disabled: #AAA9A1;
+  --color-text-inverse: #FAF9F4;
+
+  /* Border */
+  --color-border-subtle: #E1DFD7;
+  --color-border-default: #D5D3C9;
+  --color-border-strong: #BBB9AF;
+
+  /* Accent */
+  --color-accent: #536B38;
+  --color-accent-hover: #455C2D;
+  --color-accent-soft: #E2E9D7;
+  --color-accent-softer: #EDF1E7;
+  --color-accent-ink: #344423;
+
+  /* Semantic */
+  --color-positive: #4F7045;
+  --color-positive-soft: #E4ECE0;
+  --color-warning: #9A6A28;
+  --color-warning-soft: #F3E8D5;
+  --color-negative: #9A493F;
+  --color-negative-soft: #F2DEDA;
+  --color-info: #526873;
+  --color-info-soft: #E0E8EB;
+
+  /* Fonts */
+  --font-sans: var(--font-instrument-sans), 'Instrument Sans', system-ui, sans-serif;
+  --font-serif: var(--font-bitter), 'Bitter', Georgia, serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-family: var(--font-instrument-sans), 'Instrument Sans', system-ui, sans-serif;
+  background-color: #F8F7F2;
+  color: #20231E;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.font-serif {
+  font-family: var(--font-bitter), 'Bitter', Georgia, serif;
+}
+
+/* Tabular nums utility */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D5D3C9;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #BBB9AF;
+}
+
+/* Print styles for memo */
+@media print {
+  aside, nav, button { display: none !important; }
+  body { background: white; }
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
