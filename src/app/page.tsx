@@ -16,16 +16,16 @@ const avgScore = Math.round(companies.reduce((s, c) => s + c.boringBizScore, 0) 
 
 export default function HuntPage() {
   return (
-    <div className="px-8 py-8 max-w-[1200px]">
+    <div className="px-4 md:px-8 py-6 md:py-8 max-w-[1200px]">
       {/* Morning brief header */}
-      <div className="mb-6">
+      <div className="mb-5 md:mb-6">
         <p className="text-[11px] text-text-tertiary uppercase tracking-widest mb-1">Friday, September 12, 2026</p>
-        <h1 className="text-[28px] font-semibold text-text-primary leading-tight">The Hunt</h1>
-        <p className="text-[14px] text-text-secondary mt-1">This week&apos;s best opportunities.</p>
+        <h1 className="text-[24px] md:text-[28px] font-semibold text-text-primary leading-tight">The Hunt</h1>
+        <p className="text-[13px] md:text-[14px] text-text-secondary mt-1">This week&apos;s best opportunities.</p>
       </div>
 
       {/* Summary bar */}
-      <div className="flex items-center gap-6 py-3 px-4 bg-bg-surface border border-border-subtle rounded-lg mb-6">
+      <div className="grid grid-cols-2 md:flex md:items-center gap-3 md:gap-6 py-3 px-4 bg-bg-surface border border-border-subtle rounded-lg mb-5 md:mb-6">
         {[
           { label: 'Prime targets', value: primeCount },
           { label: 'New this week', value: newThisWeek },
@@ -33,20 +33,20 @@ export default function HuntPage() {
           { label: 'Avg score', value: avgScore },
         ].map(({ label, value }, i) => (
           <div key={label} className="flex items-center gap-3">
-            {i > 0 && <div className="w-px h-6 bg-border-subtle" />}
+            {i > 0 && <div className="hidden md:block w-px h-6 bg-border-subtle" />}
             <div>
               <p className="text-[11px] text-text-tertiary">{label}</p>
               <p className="text-[18px] font-semibold tabular-nums text-text-primary leading-none">{value}</p>
             </div>
           </div>
         ))}
-        <div className="ml-auto flex items-center gap-1.5">
+        <div className="col-span-2 md:col-span-1 md:ml-auto flex items-center gap-1.5">
           <span className="w-2 h-2 bg-positive rounded-full animate-pulse" />
           <span className="text-[11px] text-text-tertiary">Agents running</span>
         </div>
       </div>
 
-      <div className="flex gap-6">
+      <div className="flex flex-col lg:flex-row gap-6">
         {/* Opportunity cards */}
         <div className="flex-1 min-w-0">
           <h2 className="text-[13px] font-semibold text-text-secondary uppercase tracking-wider mb-3">
@@ -60,8 +60,8 @@ export default function HuntPage() {
         </div>
 
         {/* Scatter plot sidebar */}
-        <div className="w-[280px] flex-shrink-0">
-          <div className="bg-bg-surface border border-border-subtle rounded-[10px] p-4 sticky top-6">
+        <div className="w-full lg:w-[280px] lg:flex-shrink-0">
+          <div className="bg-bg-surface border border-border-subtle rounded-[10px] p-4 lg:sticky lg:top-6">
             <h2 className="text-[12px] font-semibold text-text-secondary uppercase tracking-wider mb-1">
               Quality × Sophistication
             </h2>

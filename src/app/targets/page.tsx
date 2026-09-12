@@ -70,7 +70,7 @@ export default function TargetsPage() {
   );
 
   return (
-    <div className="px-8 py-8">
+    <div className="px-4 md:px-8 py-6 md:py-8">
       {/* Header */}
       <div className="flex items-start justify-between mb-5">
         <div>
@@ -159,7 +159,7 @@ export default function TargetsPage() {
       </div>
 
       {/* Views */}
-      <div className="flex gap-0.5 mb-3">
+      <div className="flex gap-0.5 mb-3 overflow-x-auto pb-0.5 -mx-1 px-1">
         {VIEWS.map(v => (
           <button
             key={v.label}

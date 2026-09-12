@@ -105,7 +105,7 @@ export default function PipelinePage() {
     .reduce((s, c) => s + (c.askingPrice ?? c.valuationEstimate), 0);
 
   return (
-    <div className="px-8 py-8">
+    <div className="px-4 md:px-8 py-6 md:py-8">
       {/* Header */}
       <div className="flex items-start justify-between mb-5">
         <div>

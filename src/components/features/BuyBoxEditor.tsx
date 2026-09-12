@@ -32,7 +32,7 @@ function NumberField({
           step={step}
           min={min}
           onChange={(e) => setBuyBox({ [field]: parseFloat(e.target.value) || 0 })}
-          className={`w-full h-8 text-[13px] tabular-nums bg-bg-canvas border border-border-default rounded-lg focus:outline-none focus:border-accent text-text-primary ${prefix ? 'pl-6' : 'pl-3'} ${suffix ? 'pr-8' : 'pr-3'}`}
+          className={`w-full h-10 md:h-8 text-[13px] tabular-nums bg-bg-canvas border border-border-default rounded-lg focus:outline-none focus:border-accent text-text-primary ${prefix ? 'pl-6' : 'pl-3'} ${suffix ? 'pr-8' : 'pr-3'}`}
         />
         {suffix && <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[12px] text-text-tertiary">{suffix}</span>}
       </div>
@@ -86,7 +86,7 @@ export function BuyBoxEditor() {
     <div>
       {/* Deal Size */}
       <Section title="Deal Size">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <NumberField label="Min Purchase Price" value={buyBox.minPrice} field="minPrice" prefix="$" />
           <NumberField label="Max Purchase Price" value={buyBox.maxPrice} field="maxPrice" prefix="$" />
           <NumberField label="Min Revenue" value={buyBox.minRevenue} field="minRevenue" prefix="$" />
@@ -99,7 +99,7 @@ export function BuyBoxEditor() {
 
       {/* Financial Quality */}
       <Section title="Financial Quality">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <NumberField label="Min EBITDA Margin" value={buyBox.minMargin} field="minMargin" suffix="%" step={1} />
           <NumberField label="Min Free Cash Flow" value={buyBox.minFCF} field="minFCF" prefix="$" step={10000} />
           <NumberField label="Max Customer Concentration" value={buyBox.maxCustomerConcentration} field="maxCustomerConcentration" suffix="%" step={5} />

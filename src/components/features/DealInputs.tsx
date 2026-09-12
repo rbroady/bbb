@@ -30,7 +30,7 @@ function Field({ label, value, field, prefix, suffix, step = 1, min = 0 }: Field
           min={min}
           onChange={(e) => setDealInputs({ [field]: parseFloat(e.target.value) || 0 })}
           className={`
-            w-full h-8 text-[13px] tabular-nums bg-bg-canvas border border-border-default rounded-lg
+            w-full h-10 md:h-8 text-[13px] tabular-nums bg-bg-canvas border border-border-default rounded-lg
             focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20
             text-text-primary
             ${prefix ? 'pl-6' : 'pl-3'}
@@ -49,7 +49,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   return (
     <div className="mb-6">
       <h3 className="text-[11px] font-semibold text-text-secondary uppercase tracking-wider mb-3">{title}</h3>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {children}
       </div>
     </div>

@@ -20,7 +20,7 @@ const nav = [
   { label: 'Pipeline', href: '/pipeline', icon: KanbanSquare },
 ];
 
-export function Sidebar() {
+export function Sidebar({ onClose }: { onClose?: () => void }) {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
@@ -29,7 +29,7 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="w-[232px] min-h-screen bg-bg-app border-r border-border-subtle flex flex-col flex-shrink-0">
+    <aside className="w-[232px] h-full min-h-screen bg-bg-app border-r border-border-subtle flex flex-col flex-shrink-0">
       {/* Logo */}
       <div className="px-5 pt-6 pb-4">
         <div className="flex items-center gap-2.5">
@@ -49,6 +49,7 @@ export function Sidebar() {
           <Link
             key={href}
             href={href}
+            onClick={onClose}
             className={`
               flex items-center gap-2.5 px-3 py-2 rounded-md mb-0.5 text-[13px] font-medium
               transition-colors duration-100

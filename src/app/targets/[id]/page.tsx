@@ -58,7 +58,7 @@ export default function CompanyPage({ params }: Props) {
   const sdeMargin = (company.sde / company.revenue) * 100;
 
   return (
-    <div className="px-8 py-8">
+    <div className="px-4 md:px-8 py-6 md:py-8">
       <div className="max-w-[920px]">
         {/* Back */}
         <button
@@ -70,19 +70,19 @@ export default function CompanyPage({ params }: Props) {
         </button>
 
         {/* Header */}
-        <div className="flex items-start justify-between mb-1">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-1 gap-3">
           <div>
-            <div className="flex items-center gap-3 mb-1">
-              <h1 className="text-[28px] font-semibold text-text-primary leading-tight">{company.name}</h1>
+            <div className="flex items-center gap-3 mb-1 flex-wrap">
+              <h1 className="text-[22px] md:text-[28px] font-semibold text-text-primary leading-tight">{company.name}</h1>
               <StatusChip status={company.status} />
             </div>
-            <p className="text-[14px] text-text-secondary">
+            <p className="text-[13px] md:text-[14px] text-text-secondary">
               {company.industry} · {company.city}, {company.state} · {company.yearsOperating} years
             </p>
           </div>
-          <div className="text-right flex-shrink-0 ml-6">
+          <div className="sm:text-right flex-shrink-0 sm:ml-6">
             <p className="text-[10px] text-text-tertiary uppercase tracking-widest mb-0.5">Boring Biz Score</p>
-            <p className="text-[52px] font-bold tabular-nums text-text-primary leading-none">{company.boringBizScore}</p>
+            <p className="text-[40px] md:text-[52px] font-bold tabular-nums text-text-primary leading-none">{company.boringBizScore}</p>
             <div className="flex items-center gap-1.5 mt-1">
               <div className="w-2 h-2 rounded-full bg-accent" />
               <span className="text-[11px] text-text-secondary">
@@ -93,7 +93,7 @@ export default function CompanyPage({ params }: Props) {
         </div>
 
         {/* Score bars */}
-        <div className="grid grid-cols-3 gap-3 mb-5 mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5 mt-4">
           {[
             { label: 'Business Quality', value: score.businessQuality, max: 40, color: 'accent' as const },
             { label: 'Acquisition Fit', value: score.acquisitionFit, max: 25, color: 'positive' as const },
@@ -125,7 +125,7 @@ export default function CompanyPage({ params }: Props) {
         </div>
 
         {/* Two-column fundamentals */}
-        <div className="grid grid-cols-2 gap-4 mb-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
           {/* Business fundamentals */}
           <div className="bg-bg-surface border border-border-subtle rounded-[10px] p-4">
             <h3 className="text-[12px] font-semibold text-text-secondary uppercase tracking-wider mb-2">
@@ -198,7 +198,7 @@ export default function CompanyPage({ params }: Props) {
         {/* Digital Presence */}
         <SectionHeader title="Digital Presence" />
         <div className="bg-bg-surface border border-border-subtle rounded-[10px] p-4 mb-2">
-          <div className="grid grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
             {[
               { label: 'Website', value: websiteQualityLabel(company.websiteQuality), good: company.websiteQuality >= 4, icon: Globe },
               { label: 'Online Booking', value: company.hasOnlineBooking ? 'Yes' : 'No', good: company.hasOnlineBooking, icon: Calendar },
@@ -216,7 +216,7 @@ export default function CompanyPage({ params }: Props) {
         </div>
 
         {/* Competition & Seller Signals */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <SectionHeader title="Competition" />
             <div className="bg-bg-surface border border-border-subtle rounded-[10px] p-4">
@@ -283,7 +283,7 @@ export default function CompanyPage({ params }: Props) {
         </div>
 
         {/* Valuation & Financing */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <SectionHeader title="Estimated Valuation" />
             <div className="bg-bg-surface border border-border-subtle rounded-[10px] p-4">
@@ -317,7 +317,7 @@ export default function CompanyPage({ params }: Props) {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-3 pb-12">
+        <div className="flex flex-wrap items-center gap-3 pb-12">
           <Button variant="primary" size="lg" onClick={() => router.push('/deal-analyzer')}>
             Analyze Deal
           </Button>

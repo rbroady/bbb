@@ -17,9 +17,9 @@ export default function DealAnalyzerPage() {
   const results = calculateDealMetrics(dealInputs);
 
   return (
-    <div className="px-8 py-8 max-w-[1200px]">
+    <div className="px-4 md:px-8 py-6 md:py-8 max-w-[1200px]">
       {/* Header */}
-      <div className="flex items-start justify-between mb-6">
+      <div className="flex flex-wrap items-start justify-between gap-3 mb-6">
         <div>
           <h1 className="text-[22px] font-semibold text-text-primary">Deal Analyzer</h1>
           <p className="text-[13px] text-text-secondary mt-0.5">Model acquisition economics in real time.</p>
@@ -52,9 +52,9 @@ export default function DealAnalyzerPage() {
       </div>
 
       {activeTab === 'analysis' ? (
-        <div className="flex gap-6 items-start">
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
           {/* Inputs */}
-          <div className="w-[42%] flex-shrink-0">
+          <div className="w-full lg:w-[42%] lg:flex-shrink-0">
             <div className="bg-bg-surface border border-border-subtle rounded-[10px] p-5">
               <p className="text-[11px] font-semibold text-text-secondary uppercase tracking-wider mb-4">Inputs</p>
               <DealInputsPanel />
@@ -63,7 +63,7 @@ export default function DealAnalyzerPage() {
 
           {/* Results */}
           <div className="flex-1 min-w-0">
-            <div className="bg-bg-surface border border-border-subtle rounded-[10px] p-5 lg:sticky lg:top-6">
+            <div className="bg-bg-surface border border-border-subtle rounded-[10px] p-5 lg:sticky lg:top-20">
               <p className="text-[11px] font-semibold text-text-secondary uppercase tracking-wider mb-4">Results</p>
               <DealResultsPanel results={results} inputs={dealInputs} />
             </div>

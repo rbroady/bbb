@@ -33,7 +33,7 @@ export function EbitdaBridge({ baseEbitda, initiatives }: Props) {
         const isNegative = item.value < 0;
         return (
           <div key={idx} className="flex items-center gap-3">
-            <span className="text-[11px] text-text-secondary w-44 shrink-0 truncate">{item.label}</span>
+            <span className="text-[11px] text-text-secondary w-28 sm:w-44 shrink-0 truncate">{item.label}</span>
             <div className="flex-1 relative h-6">
               <div
                 className="absolute top-1 h-4 rounded-sm transition-all duration-500 flex items-center px-2"
