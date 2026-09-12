@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   Search,
@@ -31,9 +32,12 @@ export function Sidebar() {
     <aside className="w-[232px] min-h-screen bg-bg-app border-r border-border-subtle flex flex-col flex-shrink-0">
       {/* Logo */}
       <div className="px-5 pt-6 pb-4">
-        <span className="font-sans text-[32px] font-bold text-text-primary leading-none tracking-tight">
-          BBB
-        </span>
+        <div className="flex items-center gap-2.5">
+          <Image src="/bbbicon.png" alt="BBB" width={36} height={36} className="flex-shrink-0" />
+          <span className="font-sans text-[32px] font-bold text-text-primary leading-none tracking-tight">
+            BBB
+          </span>
+        </div>
         <p className="text-[11px] text-text-tertiary mt-1">Acquisition sourcing</p>
       </div>
 

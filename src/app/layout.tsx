@@ -18,8 +18,12 @@ const bitter = Bitter({
 });
 
 export const metadata: Metadata = {
-  title: 'Boring Biz Hunt',
+  title: 'BBB — Boring Business Bureau',
   description: 'Acquisition sourcing for overlooked, cash-flowing local businesses',
+  icons: {
+    icon: '/bbbicon.png',
+    apple: '/bbbicon.png',
+  },
 };
 
 export default function RootLayout({
