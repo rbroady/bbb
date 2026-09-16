@@ -9,6 +9,7 @@ import {
   SlidersHorizontal,
   Calculator,
   KanbanSquare,
+  PlusCircle,
 } from 'lucide-react';
 
 const nav = [
@@ -18,6 +19,10 @@ const nav = [
   { label: 'Buy Box', href: '/buy-box', icon: SlidersHorizontal },
   { label: 'Deal Analyzer', href: '/deal-analyzer', icon: Calculator },
   { label: 'Pipeline', href: '/pipeline', icon: KanbanSquare },
+];
+
+const secondaryNav = [
+  { label: 'Add company', href: '/add-company', icon: PlusCircle },
 ];
 
 export function Sidebar({ onClose }: { onClose?: () => void }) {
@@ -56,6 +61,29 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
               ${isActive(href)
                 ? 'bg-bg-active text-text-primary'
                 : 'text-text-secondary hover:text-text-primary hover:bg-bg-hover'
+              }
+            `}
+          >
+            <Icon size={15} className="flex-shrink-0" />
+            {label}
+          </Link>
+        ))}
+      </nav>
+
+      {/* Secondary nav */}
+      <div className="mx-4 h-px bg-border-subtle mt-2 mb-2" />
+      <nav className="px-2 mb-2">
+        {secondaryNav.map(({ label, href, icon: Icon }) => (
+          <Link
+            key={href}
+            href={href}
+            onClick={onClose}
+            className={`
+              flex items-center gap-2.5 px-3 py-2 rounded-md mb-0.5 text-[13px] font-medium
+              transition-colors duration-100
+              ${isActive(href)
+                ? 'bg-bg-active text-text-primary'
+                : 'text-text-tertiary hover:text-text-secondary hover:bg-bg-hover'
               }
             `}
           >

@@ -52,6 +52,11 @@ interface AppStore {
 
   selectedCompany: Company | null;
   setSelectedCompany: (company: Company | null) => void;
+
+  manualCompanies: Company[];
+  addManualCompany: (company: Company) => void;
+  updateManualCompany: (id: string, updates: Partial<Company>) => void;
+  removeManualCompany: (id: string) => void;
 }
 
 export const useAppStore = create<AppStore>()(
@@ -85,6 +90,17 @@ export const useAppStore = create<AppStore>()(
 
       selectedCompany: null,
       setSelectedCompany: (company) => set({ selectedCompany: company }),
+
+      manualCompanies: [],
+      addManualCompany: (company) => set((state) => ({
+        manualCompanies: [company, ...state.manualCompanies],
+      })),
+      updateManualCompany: (id, updates) => set((state) => ({
+        manualCompanies: state.manualCompanies.map(c => c.id === id ? { ...c, ...updates } : c),
+      })),
+      removeManualCompany: (id) => set((state) => ({
+        manualCompanies: state.manualCompanies.filter(c => c.id !== id),
+      })),
     }),
     { name: 'boring-biz-hunt' }
   )

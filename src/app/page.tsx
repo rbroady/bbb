@@ -1,25 +1,34 @@
 'use client';
-import { companies, getCompaniesForHunt } from '@/data/companies';
+import { useMemo } from 'react';
 import { OpportunityCard } from '@/components/features/OpportunityCard';
 import { QualitySophisticationPlot } from '@/components/charts/QualitySophisticationPlot';
-
-const huntCompanies = getCompaniesForHunt();
-
-const primeCount = companies.filter(c => c.boringBizScore >= 85).length;
-const newThisWeek = companies.filter(c => {
-  const d = new Date(c.lastResearched);
-  const cutoff = new Date('2026-09-05');
-  return d >= cutoff;
-}).length;
-const offMarketCount = companies.filter(c => c.status === 'Off-market').length;
-const avgScore = Math.round(companies.reduce((s, c) => s + c.boringBizScore, 0) / companies.length);
+import { useAllCompanies } from '@/lib/useAllCompanies';
 
 export default function HuntPage() {
+  const allCompanies = useAllCompanies();
+
+  const huntCompanies = useMemo(() =>
+    [...allCompanies].sort((a, b) => b.boringBizScore - a.boringBizScore).slice(0, 8),
+    [allCompanies]
+  );
+
+  const primeCount = useMemo(() => allCompanies.filter(c => c.boringBizScore >= 85).length, [allCompanies]);
+  const newThisWeek = useMemo(() => allCompanies.filter(c => {
+    const d = new Date(c.lastResearched);
+    const cutoff = new Date('2026-09-08');
+    return d >= cutoff;
+  }).length, [allCompanies]);
+  const offMarketCount = useMemo(() => allCompanies.filter(c => c.status === 'Off-market').length, [allCompanies]);
+  const avgScore = useMemo(() =>
+    Math.round(allCompanies.reduce((s, c) => s + c.boringBizScore, 0) / allCompanies.length),
+    [allCompanies]
+  );
+
   return (
     <div className="px-4 md:px-8 py-6 md:py-8 max-w-[1200px]">
       {/* Morning brief header */}
       <div className="mb-5 md:mb-6">
-        <p className="text-[11px] text-text-tertiary uppercase tracking-widest mb-1">Friday, September 12, 2026</p>
+        <p className="text-[11px] text-text-tertiary uppercase tracking-widest mb-1">Monday, September 15, 2026</p>
         <h1 className="text-[24px] md:text-[28px] font-semibold text-text-primary leading-tight">The Hunt</h1>
         <p className="text-[13px] md:text-[14px] text-text-secondary mt-1">This week&apos;s best opportunities.</p>
       </div>
@@ -66,7 +75,7 @@ export default function HuntPage() {
               Quality × Sophistication
             </h2>
             <p className="text-[11px] text-text-tertiary mb-3">Click a dot to open company</p>
-            <QualitySophisticationPlot companies={companies} mini />
+            <QualitySophisticationPlot companies={allCompanies} mini />
             <p className="text-[10px] text-text-tertiary mt-2 text-center">
               Top-left = prime targets
             </p>

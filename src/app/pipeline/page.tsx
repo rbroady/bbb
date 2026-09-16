@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { companies as allCompanies } from '@/data/companies';
+import { useAllCompanies } from '@/lib/useAllCompanies';
 import { useAppStore } from '@/store/useAppStore';
 import { PipelineStage, Company } from '@/types';
 import { StatusChip } from '@/components/ui/StatusChip';
@@ -86,6 +86,7 @@ type ViewMode = 'kanban' | 'table';
 export default function PipelinePage() {
   const router = useRouter();
   const { pipelineOverrides, setPipelineStage } = useAppStore();
+  const allCompanies = useAllCompanies();
   const [view, setView] = useState<ViewMode>('kanban');
 
   // Get companies with pipeline stages (excluding passed unless they have explicit override)

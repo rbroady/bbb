@@ -1,12 +1,12 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { companies } from '@/data/companies';
 import { Company, CompanyStatus } from '@/types';
 import { StatusChip } from '@/components/ui/StatusChip';
 import { QualitySophisticationPlot } from '@/components/charts/QualitySophisticationPlot';
 import { formatCurrency, formatRelativeDate, websiteQualityLabel } from '@/lib/formatting';
-import { Search, SlidersHorizontal, BarChart2, TableIcon } from 'lucide-react';
+import { useAllCompanies } from '@/lib/useAllCompanies';
+import { Search, SlidersHorizontal, BarChart2, TableIcon, PlusCircle } from 'lucide-react';
 
 const VIEWS: { label: string; filter: (c: Company) => boolean }[] = [
   { label: 'All', filter: () => true },
@@ -20,11 +20,9 @@ const VIEWS: { label: string; filter: (c: Company) => boolean }[] = [
   { label: 'Passed', filter: c => c.status === 'Passed' },
 ];
 
-const INDUSTRIES = [...new Set(companies.map(c => c.industry))].sort();
-const STATES = [...new Set(companies.map(c => c.state))].sort();
-
 export default function TargetsPage() {
   const router = useRouter();
+  const allCompanies = useAllCompanies();
   const [activeView, setActiveView] = useState('All');
   const [search, setSearch] = useState('');
   const [industry, setIndustry] = useState('');
@@ -34,10 +32,13 @@ export default function TargetsPage() {
   const [sortCol, setSortCol] = useState<keyof Company>('boringBizScore');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
 
+  const INDUSTRIES = useMemo(() => [...new Set(allCompanies.map(c => c.industry))].sort(), [allCompanies]);
+  const STATES = useMemo(() => [...new Set(allCompanies.map(c => c.state))].sort(), [allCompanies]);
+
   const viewFilter = VIEWS.find(v => v.label === activeView)?.filter ?? (() => true);
 
   const filtered = useMemo(() => {
-    return companies
+    return allCompanies
       .filter(viewFilter)
       .filter(c => !search || c.name.toLowerCase().includes(search.toLowerCase()) || c.city.toLowerCase().includes(search.toLowerCase()))
       .filter(c => !industry || c.industry === industry)
@@ -53,7 +54,7 @@ export default function TargetsPage() {
           ? String(av).localeCompare(String(bv))
           : String(bv).localeCompare(String(av));
       });
-  }, [activeView, search, industry, state, minScore, sortCol, sortDir, viewFilter]);
+  }, [activeView, search, industry, state, minScore, sortCol, sortDir, viewFilter, allCompanies]);
 
   const handleSort = (col: keyof Company) => {
     if (sortCol === col) setSortDir(d => d === 'asc' ? 'desc' : 'asc');
@@ -75,9 +76,16 @@ export default function TargetsPage() {
       <div className="flex items-start justify-between mb-5">
         <div>
           <h1 className="text-[22px] font-semibold text-text-primary">Targets</h1>
-          <p className="text-[13px] text-text-secondary mt-0.5">{companies.length} companies tracked</p>
+          <p className="text-[13px] text-text-secondary mt-0.5">{allCompanies.length} companies tracked</p>
         </div>
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => router.push('/add-company')}
+            className="flex items-center gap-1.5 text-[12px] px-3 py-1.5 rounded-lg border bg-accent text-text-inverse border-accent hover:bg-accent-hover font-medium transition-colors"
+          >
+            <PlusCircle size={13} />
+            Add company
+          </button>
           <button
             onClick={() => setShowPlot(v => !v)}
             className={`flex items-center gap-1.5 text-[12px] px-3 py-1.5 rounded-lg border font-medium transition-colors ${
@@ -172,7 +180,7 @@ export default function TargetsPage() {
           >
             {v.label}
             <span className="ml-1.5 text-[10px] tabular-nums text-text-tertiary">
-              {companies.filter(v.filter).length}
+              {allCompanies.filter(v.filter).length}
             </span>
           </button>
         ))}
