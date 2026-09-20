@@ -23,7 +23,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
   };
 
   return (
-    <aside className="w-[232px] h-full min-h-screen bg-bg-app border-r border-border-subtle flex flex-col flex-shrink-0">
+    <aside className="w-[232px] h-full bg-bg-app border-r border-border-subtle flex flex-col flex-shrink-0 overflow-y-auto">
       {/* Logo */}
       <div className="px-5 pt-6 pb-4">
         <div className="flex items-center gap-2.5">

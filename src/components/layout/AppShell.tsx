@@ -12,7 +12,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <aside
         className={`
           fixed inset-y-0 left-0 z-30
-          lg:static lg:z-auto lg:flex-shrink-0
+          lg:sticky lg:top-0 lg:h-screen lg:z-auto lg:flex-shrink-0
           transform transition-transform duration-200 ease-out
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
