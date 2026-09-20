@@ -1,7 +1,7 @@
 'use client';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { BuyBox, Company, DealInputs, ValueInitiative } from '@/types';
+import { BuyBox, Company, CompanyStatus, DealInputs, ValueInitiative } from '@/types';
 import { defaultDealInputs } from '@/lib/calculations';
 import { defaultInitiatives } from '@/data/improvements';
 
@@ -40,15 +40,18 @@ interface AppStore {
   setDealInputs: (inputs: Partial<DealInputs>) => void;
   resetDealInputs: () => void;
 
+  companyDealInputs: Record<string, Partial<DealInputs>>;
+  setCompanyDealInputs: (companyId: string, inputs: Partial<DealInputs>) => void;
+
   initiatives: ValueInitiative[];
   setInitiatives: (initiatives: ValueInitiative[]) => void;
   toggleInitiative: (id: string) => void;
 
-  pipelineOverrides: Record<string, string>;
-  setPipelineStage: (companyId: string, stage: string) => void;
+  companyStatuses: Record<string, CompanyStatus>;
+  setCompanyStatus: (companyId: string, status: CompanyStatus) => void;
 
-  watchlist: string[];
-  toggleWatchlist: (companyId: string) => void;
+  companyNotes: Record<string, string>;
+  setCompanyNotes: (companyId: string, notes: string) => void;
 
   selectedCompany: Company | null;
   setSelectedCompany: (company: Company | null) => void;
@@ -70,22 +73,28 @@ export const useAppStore = create<AppStore>()(
       setDealInputs: (partial) => set((state) => ({ dealInputs: { ...state.dealInputs, ...partial } })),
       resetDealInputs: () => set({ dealInputs: defaultDealInputs }),
 
+      companyDealInputs: {},
+      setCompanyDealInputs: (companyId, inputs) => set((state) => ({
+        companyDealInputs: {
+          ...state.companyDealInputs,
+          [companyId]: { ...(state.companyDealInputs[companyId] ?? {}), ...inputs },
+        },
+      })),
+
       initiatives: defaultInitiatives,
       setInitiatives: (initiatives) => set({ initiatives }),
       toggleInitiative: (id) => set((state) => ({
         initiatives: state.initiatives.map(i => i.id === id ? { ...i, enabled: !i.enabled } : i),
       })),
 
-      pipelineOverrides: {},
-      setPipelineStage: (companyId, stage) => set((state) => ({
-        pipelineOverrides: { ...state.pipelineOverrides, [companyId]: stage },
+      companyStatuses: {},
+      setCompanyStatus: (companyId, status) => set((state) => ({
+        companyStatuses: { ...state.companyStatuses, [companyId]: status },
       })),
 
-      watchlist: [],
-      toggleWatchlist: (companyId) => set((state) => ({
-        watchlist: state.watchlist.includes(companyId)
-          ? state.watchlist.filter(id => id !== companyId)
-          : [...state.watchlist, companyId],
+      companyNotes: {},
+      setCompanyNotes: (companyId, notes) => set((state) => ({
+        companyNotes: { ...state.companyNotes, [companyId]: notes },
       })),
 
       selectedCompany: null,

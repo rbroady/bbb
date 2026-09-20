@@ -2,23 +2,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import {
-  Search,
-  Target,
-  Bot,
-  SlidersHorizontal,
-  Calculator,
-  KanbanSquare,
-  PlusCircle,
-} from 'lucide-react';
+import { Compass, KanbanSquare, Settings, PlusCircle } from 'lucide-react';
 
 const nav = [
-  { label: 'The Hunt', href: '/', icon: Search },
-  { label: 'Targets', href: '/targets', icon: Target },
-  { label: 'Agents', href: '/agents', icon: Bot },
-  { label: 'Buy Box', href: '/buy-box', icon: SlidersHorizontal },
-  { label: 'Deal Analyzer', href: '/deal-analyzer', icon: Calculator },
+  { label: 'Discover', href: '/', icon: Compass },
   { label: 'Pipeline', href: '/pipeline', icon: KanbanSquare },
+  { label: 'Settings', href: '/settings', icon: Settings },
 ];
 
 const secondaryNav = [
@@ -29,7 +18,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
-    if (href === '/') return pathname === '/';
+    if (href === '/') return pathname === '/' || pathname.startsWith('/company');
     return pathname.startsWith(href);
   };
 

@@ -1,22 +1,16 @@
 export type CompanyStatus =
-  | 'Prime'
-  | 'Off-market'
-  | 'For sale'
-  | 'Watching'
-  | 'Contacted'
-  | 'Analyzing'
-  | 'LOI'
-  | 'Passed';
+  | 'new'
+  | 'saved'
+  | 'passed'
+  | 'contacted'
+  | 'evaluating'
+  | 'loi'
+  | 'diligence'
+  | 'closed';
 
-export type PipelineStage =
-  | 'Watching'
-  | 'Contacted'
-  | 'Initial Conversation'
-  | 'Analyzing'
-  | 'Due Diligence'
-  | 'LOI'
-  | 'Under Contract'
-  | 'Passed';
+export const PIPELINE_STATUSES: CompanyStatus[] = ['saved', 'contacted', 'evaluating', 'loi', 'diligence', 'closed'];
+
+export type DataConfidence = 'Verified' | 'Reported' | 'Estimated' | 'Inferred' | 'Unknown';
 
 export interface Company {
   id: string;
@@ -41,7 +35,6 @@ export interface Company {
   acquisitionFitScore: number;
   untappedUpsideScore: number;
   status: CompanyStatus;
-  pipelineStage?: PipelineStage;
   websiteQuality: 1 | 2 | 3 | 4 | 5;
   hasOnlineBooking: boolean;
   hasCRM: boolean;
@@ -66,6 +59,7 @@ export interface Company {
   lastResearched: string;
   capex: number;
   workingCapital: number;
+  dataConfidence?: DataConfidence;
 }
 
 export interface Agent {

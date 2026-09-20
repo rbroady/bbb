@@ -33,7 +33,7 @@ export function formatDate(iso: string): string {
 }
 
 export function formatRelativeDate(iso: string): string {
-  const now = new Date('2026-09-12');
+  const now = new Date();
   const d = new Date(iso);
   const diffMs = now.getTime() - d.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));

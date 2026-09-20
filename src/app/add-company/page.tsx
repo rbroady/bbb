@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppStore } from '@/store/useAppStore';
 import { calculateBoringBizScore } from '@/lib/scoring';
-import { Company, CompanyStatus, PipelineStage } from '@/types';
+import { Company, CompanyStatus } from '@/types';
 import { ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
 
 const INDUSTRIES = [
@@ -20,8 +20,7 @@ const STATES = [
   'VA','WA','WV','WI','WY',
 ];
 
-const STATUSES: CompanyStatus[] = ['Off-market','For sale','Watching','Contacted','Analyzing','LOI','Passed'];
-const PIPELINE_STAGES: PipelineStage[] = ['Watching','Contacted','Initial Conversation','Analyzing','Due Diligence','LOI','Under Contract','Passed'];
+const STATUSES: CompanyStatus[] = ['new', 'saved', 'contacted', 'evaluating', 'loi', 'diligence', 'passed'];
 
 function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + Date.now();
@@ -90,7 +89,6 @@ type FormData = {
   competitionLevel: 'Low' | 'Medium' | 'High';
   localCompetitors: number;
   status: CompanyStatus;
-  pipelineStage: PipelineStage | '';
   askingPrice: number | '';
   valuationEstimate: number;
   editorialSummary: string;
@@ -111,7 +109,7 @@ const defaults: FormData = {
   googleRating: 0, reviewCount: 0, commonPraise: '', commonComplaints: '',
   websiteQuality: 2, hasOnlineBooking: false, hasCRM: false, hasActiveSEO: false, hasSocialMedia: false, hasPaidAds: false,
   competitionLevel: 'Medium', localCompetitors: 0,
-  status: 'Watching', pipelineStage: '', askingPrice: '', valuationEstimate: 0,
+  status: 'new', askingPrice: '', valuationEstimate: 0,
   editorialSummary: '', sellerSignals: '', signals: '', acquisitionRisks: '',
   marketingOpportunities: '', aiOpportunities: '', nextSteps: '', notes: '',
 };
@@ -177,7 +175,6 @@ export default function AddCompanyPage() {
       ownerTenure: form.ownerTenure,
       founderOwned: form.founderOwned,
       status: form.status,
-      pipelineStage: form.pipelineStage || undefined,
       websiteQuality: form.websiteQuality,
       hasOnlineBooking: form.hasOnlineBooking,
       hasCRM: form.hasCRM,
@@ -227,13 +224,13 @@ export default function AddCompanyPage() {
       <div className="px-4 md:px-8 py-12 max-w-[560px]">
         <div className="bg-positive-soft border border-positive/20 rounded-[10px] p-6 text-center">
           <p className="font-serif text-[22px] text-text-primary mb-2">Company added.</p>
-          <p className="text-[13px] text-text-secondary mb-5">It&apos;s now in Targets and scored against your Buy Box.</p>
+          <p className="text-[13px] text-text-secondary mb-5">It&apos;s now in Discover and scored against your Buy Box.</p>
           <div className="flex justify-center gap-3">
             <button
-              onClick={() => router.push('/targets')}
+              onClick={() => router.push('/')}
               className="h-9 px-4 text-[13px] font-medium bg-accent text-text-inverse rounded-lg hover:bg-accent-hover transition-colors"
             >
-              View in Targets
+              View in Discover
             </button>
             <button
               onClick={() => { setForm(defaults); setSubmitted(false); }}
@@ -440,13 +437,7 @@ export default function AddCompanyPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Field label="Status">
               <select className={selectCls} value={form.status} onChange={e => set('status', e.target.value as CompanyStatus)}>
-                {STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
-              </select>
-            </Field>
-            <Field label="Pipeline stage" hint="Optional — adds to Pipeline board">
-              <select className={selectCls} value={form.pipelineStage} onChange={e => set('pipelineStage', e.target.value as PipelineStage | '')}>
-                <option value="">Not in pipeline</option>
-                {PIPELINE_STAGES.map(s => <option key={s} value={s}>{s}</option>)}
+                {STATUSES.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
               </select>
             </Field>
             <Field label="Asking price" hint="Leave blank if not listed for sale">

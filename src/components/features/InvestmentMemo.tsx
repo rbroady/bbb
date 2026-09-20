@@ -10,7 +10,7 @@ interface Props {
 type Recommendation = 'PURSUE' | 'WATCH' | 'PASS';
 
 function getRecommendation(company: Company): Recommendation {
-  if (company.boringBizScore >= 80 && (company.status === 'For sale' || company.status === 'Off-market' || company.status === 'Watching')) return 'PURSUE';
+  if (company.boringBizScore >= 80 && company.status !== 'passed') return 'PURSUE';
   if (company.boringBizScore >= 65) return 'WATCH';
   return 'PASS';
 }
@@ -20,7 +20,7 @@ export function InvestmentMemo({ company, onClose }: Props) {
   const recColor = rec === 'PURSUE' ? 'text-accent' : rec === 'WATCH' ? 'text-warning' : 'text-text-primary';
   const ebitdaMultiple = company.valuationEstimate / company.ebitda;
   const sdeMultiple = company.valuationEstimate / company.sde;
-  const today = new Date('2026-09-12').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
   return (
     <div className="bg-bg-canvas min-h-screen">
