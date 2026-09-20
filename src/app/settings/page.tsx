@@ -86,7 +86,7 @@ export default function SettingsPage() {
   const tabs: { key: SettingsTab; label: string }[] = [
     { key: 'buybox', label: 'Buy Box' },
     { key: 'deal-defaults', label: 'Deal Defaults' },
-    { key: 'research', label: 'Research Sources' },
+    { key: 'research', label: 'Research Agents' },
   ];
 
   return (
