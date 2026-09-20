@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation';
 import { Compass, KanbanSquare, Settings, PlusCircle } from 'lucide-react';
 
 const nav = [
-  { label: 'Discover', href: '/', icon: Compass },
   { label: 'Pipeline', href: '/pipeline', icon: KanbanSquare },
+  { label: 'Discover', href: '/', icon: Compass },
   { label: 'Settings', href: '/settings', icon: Settings },
 ];
 
@@ -18,6 +18,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
+    if (href === '/pipeline') return pathname.startsWith('/pipeline');
     if (href === '/') return pathname === '/' || pathname.startsWith('/company');
     return pathname.startsWith(href);
   };
@@ -25,7 +26,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
   return (
     <aside className="w-[232px] h-full bg-bg-app border-r border-border-subtle flex flex-col flex-shrink-0 overflow-y-auto">
       {/* Logo */}
-      <div className="px-5 pt-6 pb-4">
+      <Link href="/pipeline" onClick={onClose} className="px-5 pt-6 pb-4 block hover:opacity-80 transition-opacity">
         <div className="flex items-center gap-2.5">
           <Image src="/bbbicon.png" alt="BBB" width={36} height={36} className="flex-shrink-0" />
           <span className="font-sans text-[32px] font-bold text-text-primary leading-none tracking-tight">
@@ -33,7 +34,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
           </span>
         </div>
         <p className="text-[11px] text-text-tertiary mt-1">Acquisition sourcing</p>
-      </div>
+      </Link>
 
       <div className="mx-4 h-px bg-border-subtle mb-2" />
 

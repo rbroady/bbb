@@ -81,7 +81,7 @@ export default function PipelinePage() {
   const router = useRouter();
   const { companyStatuses, setCompanyStatus } = useAppStore();
   const allCompanies = useAllCompanies();
-  const [view, setView] = useState<ViewMode>('kanban');
+  const [view, setView] = useState<ViewMode>('table');
 
   const getStatus = (c: Company): CompanyStatus =>
     (companyStatuses[c.id] as CompanyStatus) ?? c.status;
