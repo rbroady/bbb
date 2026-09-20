@@ -167,6 +167,7 @@ export default function PipelinePage() {
         </div>
       ) : (
         <div className="bg-bg-surface border border-border-subtle rounded-[10px] overflow-hidden">
+          <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-bg-subtle border-b border-border-subtle">
               <tr>
@@ -205,6 +206,7 @@ export default function PipelinePage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
 

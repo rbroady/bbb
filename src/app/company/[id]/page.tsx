@@ -199,7 +199,7 @@ export default function CompanyPage({ params }: Props) {
         </div>
 
         {/* Score row */}
-        <div className="grid grid-cols-3 gap-3 mb-5">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
           {[
             { label: 'Business Quality', value: score.businessQuality, max: 40, color: 'accent' as const },
             { label: 'Acquisition Fit', value: score.acquisitionFit, max: 25, color: 'positive' as const },
@@ -219,7 +219,7 @@ export default function CompanyPage({ params }: Props) {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-0.5 border-b border-border-subtle mb-5 -mx-0.5">
+        <div className="flex gap-0.5 border-b border-border-subtle mb-5 -mx-0.5 overflow-x-auto">
           {tabs.map(t => (
             <button
               key={t.key}
@@ -488,6 +488,7 @@ export default function CompanyPage({ params }: Props) {
 
                 {/* 5-year projection */}
                 <div className="bg-bg-surface border border-border-subtle rounded-[10px] overflow-hidden">
+                  <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead className="bg-bg-subtle border-b border-border-subtle">
                       <tr>
@@ -511,6 +512,7 @@ export default function CompanyPage({ params }: Props) {
                       ))}
                     </tbody>
                   </table>
+                  </div>
                 </div>
 
                 <div className="text-[11px] text-text-tertiary">

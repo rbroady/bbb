@@ -206,7 +206,7 @@ export default function DiscoverPage() {
             placeholder="Search…"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="h-8 pl-8 pr-3 text-[12px] bg-bg-canvas border border-border-default rounded-lg focus:outline-none focus:border-accent text-text-primary w-44"
+            className="h-8 pl-8 pr-3 text-[12px] bg-bg-canvas border border-border-default rounded-lg focus:outline-none focus:border-accent text-text-primary w-full sm:w-44"
           />
         </div>
         <select

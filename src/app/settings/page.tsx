@@ -18,8 +18,8 @@ function SettingsSection({ title, children }: { title: string; children: React.R
 
 function FieldRow({ label, sub, children }: { label: string; sub?: string; children: React.ReactNode }) {
   return (
-    <div className="flex items-start justify-between py-3 border-b border-border-subtle last:border-0 gap-4">
-      <div className="flex-1">
+    <div className="flex flex-wrap items-start justify-between py-3 border-b border-border-subtle last:border-0 gap-x-4 gap-y-2">
+      <div className="flex-1 min-w-[140px]">
         <p className="text-[13px] text-text-primary">{label}</p>
         {sub && <p className="text-[11px] text-text-tertiary mt-0.5">{sub}</p>}
       </div>
