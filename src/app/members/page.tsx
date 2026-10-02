@@ -129,7 +129,7 @@ export default function MembersPage() {
   });
 
   return (
-    <div className="px-4 md:px-8 py-6 md:py-8 max-w-[960px]">
+    <div className="px-4 md:px-8 py-6 md:py-8">
       <div className="mb-5">
         <h1 className="font-serif text-[22px] font-normal text-text-primary">Members</h1>
         <p className="text-[13px] text-text-secondary mt-0.5">{MEMBERS.length} members in your workspace.</p>
@@ -162,7 +162,7 @@ export default function MembersPage() {
       {/* Table */}
       <div className="bg-bg-surface border border-border-subtle rounded-[10px] overflow-hidden">
         {/* Header */}
-        <div className="grid grid-cols-[1fr_140px_200px_180px] border-b border-border-subtle px-4 py-2.5">
+        <div className="grid grid-cols-[1fr_140px_220px_200px] border-b border-border-subtle px-4 py-2.5">
           <span className="text-[11px] font-semibold uppercase tracking-widest text-text-disabled flex items-center gap-1">
             Member <ChevronDown size={11} />
           </span>
@@ -182,7 +182,7 @@ export default function MembersPage() {
             return (
               <div
                 key={member.id}
-                className="grid grid-cols-[1fr_140px_200px_180px] px-4 py-3 border-b border-border-subtle last:border-0 hover:bg-bg-hover transition-colors items-center"
+                className="grid grid-cols-[1fr_140px_220px_200px] px-4 py-3 border-b border-border-subtle last:border-0 hover:bg-bg-hover transition-colors items-center"
               >
                 {/* Member */}
                 <div className="flex items-center gap-3 min-w-0">
