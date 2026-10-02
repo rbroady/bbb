@@ -54,10 +54,11 @@ const MEMBERS: Member[] = [
   {
     id: 'pete',
     name: 'Pete Shockley',
-    email: '—',
+    email: 'prshockley@gmail.com',
     permission: 'Member',
     roles: ['Business'],
     status: 'Pending',
+    avatar: '/avatar-pete.jpg',
     initials: 'PS',
   },
 ];
