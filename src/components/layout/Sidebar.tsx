@@ -32,6 +32,7 @@ const NAV_GROUPS: NavGroup[] = [
     items: [
       { label: 'Pipeline', href: '/pipeline', icon: KanbanSquare },
       { label: 'Discover', href: '/discover', icon: Compass },
+      { label: 'Add Company', href: '/add-company', icon: PlusCircle },
     ],
   },
   {
@@ -47,6 +48,7 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: 'Manage',
     items: [
+      { label: 'Settings', href: '/settings', icon: Settings },
       { label: 'Members', icon: Users, disabled: true },
     ],
   },
@@ -95,13 +97,11 @@ export function Sidebar({ expanded, onToggle, onClose }: SidebarProps) {
         <nav className={expanded ? 'px-3 pb-2' : 'px-1.5 pb-2'}>
           {NAV_GROUPS.map((group, gi) => (
             <div key={group.label} className={gi > 0 ? 'mt-4' : ''}>
-              {/* Section label — only when expanded */}
               {expanded && (
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-text-disabled px-2 mb-1">
                   {group.label}
                 </p>
               )}
-              {/* Section divider — only when collapsed */}
               {!expanded && gi > 0 && (
                 <div className="mx-1 h-px bg-border-subtle mb-2 mt-1" />
               )}
@@ -151,38 +151,29 @@ export function Sidebar({ expanded, onToggle, onClose }: SidebarProps) {
         </nav>
       </div>
 
-      {/* Bottom: Add company + Settings */}
+      {/* Bottom: Profile row + collapse toggle */}
       <div className="flex-shrink-0">
         <div className="mx-3 h-px bg-border-subtle" />
-        <nav className={expanded ? 'px-3 py-2' : 'px-1.5 py-2'}>
-          {[
-            { label: 'Add company', href: '/add-company', icon: PlusCircle },
-            { label: 'Settings', href: '/settings', icon: Settings },
-          ].map(({ label, href, icon: Icon }) => (
-            <Link
-              key={href}
-              href={href}
-              onClick={onClose}
-              title={!expanded ? label : undefined}
-              className={[
-                'flex items-center py-2 rounded-md mb-0.5 text-[13px] font-medium transition-colors duration-100',
-                expanded ? 'gap-2.5 px-2 w-full' : 'justify-center w-8 mx-auto',
-                pathname.startsWith(href)
-                  ? 'bg-bg-active text-text-primary'
-                  : 'text-text-tertiary hover:text-text-secondary hover:bg-bg-hover',
-              ].join(' ')}
-            >
-              <Icon size={15} className="flex-shrink-0" />
-              {expanded && <span>{label}</span>}
-            </Link>
-          ))}
-        </nav>
+
+        {/* Profile */}
+        <div className={[
+          'flex items-center py-3 gap-2.5 transition-colors cursor-default',
+          expanded ? 'px-4' : 'justify-center px-0',
+        ].join(' ')}>
+          {/* Avatar */}
+          <div className="w-6 h-6 rounded-full bg-bg-subtle border border-border-default flex items-center justify-center flex-shrink-0">
+            <span className="text-[9px] font-semibold text-text-secondary leading-none">RB</span>
+          </div>
+          {expanded && (
+            <span className="text-[13px] font-medium text-text-secondary truncate">Profile</span>
+          )}
+        </div>
 
         {/* Collapse toggle */}
         <button
           onClick={onToggle}
           className={[
-            'flex items-center py-3 w-full text-text-disabled hover:text-text-tertiary transition-colors',
+            'flex items-center pb-3 w-full text-text-disabled hover:text-text-tertiary transition-colors',
             expanded ? 'justify-end px-4' : 'justify-center px-0',
           ].join(' ')}
           aria-label={expanded ? 'Collapse sidebar' : 'Expand sidebar'}
