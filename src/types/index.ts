@@ -60,6 +60,9 @@ export interface Company {
   capex: number;
   workingCapital: number;
   dataConfidence?: DataConfidence;
+  lat?: number;
+  lng?: number;
+  discoveredAt?: string;
 }
 
 export interface Agent {

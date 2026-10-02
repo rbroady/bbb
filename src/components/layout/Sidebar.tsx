@@ -2,9 +2,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Compass, KanbanSquare, Settings, PlusCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Compass, KanbanSquare, Settings, PlusCircle, ChevronLeft, ChevronRight, LayoutDashboard } from 'lucide-react';
 
 const primaryNav = [
+  { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { label: 'Pipeline', href: '/pipeline', icon: KanbanSquare },
   { label: 'Discover', href: '/', icon: Compass },
 ];
@@ -19,6 +20,7 @@ export function Sidebar({ expanded, onToggle, onClose }: SidebarProps) {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
+    if (href === '/dashboard') return pathname === '/dashboard';
     if (href === '/pipeline') return pathname.startsWith('/pipeline');
     if (href === '/') return pathname === '/' || pathname.startsWith('/company');
     return pathname.startsWith(href);
@@ -43,7 +45,7 @@ export function Sidebar({ expanded, onToggle, onClose }: SidebarProps) {
     >
       {/* Logo */}
       <Link
-        href="/pipeline"
+        href="/dashboard"
         onClick={onClose}
         className={[
           'flex items-center gap-2.5 hover:opacity-80 transition-opacity pt-5 pb-3',

@@ -43,7 +43,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           >
             <Menu size={18} className="text-text-secondary" />
           </button>
-          <span className="font-sans text-[18px] font-semibold text-text-primary leading-none">BBB</span>
+          <a href="/dashboard" className="font-sans text-[18px] font-semibold text-text-primary leading-none">BBB</a>
         </div>
         {children}
       </main>

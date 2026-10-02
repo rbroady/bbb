@@ -60,6 +60,9 @@ interface AppStore {
   addManualCompany: (company: Company) => void;
   updateManualCompany: (id: string, updates: Partial<Company>) => void;
   removeManualCompany: (id: string) => void;
+
+  lastVisitAt: string | null;
+  recordVisit: () => void;
 }
 
 export const useAppStore = create<AppStore>()(
@@ -110,6 +113,9 @@ export const useAppStore = create<AppStore>()(
       removeManualCompany: (id) => set((state) => ({
         manualCompanies: state.manualCompanies.filter(c => c.id !== id),
       })),
+
+      lastVisitAt: null,
+      recordVisit: () => set({ lastVisitAt: new Date().toISOString() }),
     }),
     { name: 'boring-biz-hunt' }
   )
