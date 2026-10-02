@@ -1,21 +1,15 @@
 'use client';
-import dynamic from 'next/dynamic';
 import { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { Map, TrendingUp, GitMerge, Crosshair, Bookmark } from 'lucide-react';
 import { useAllCompanies } from '@/lib/useAllCompanies';
 import { useAppStore } from '@/store/useAppStore';
 import { Company, CompanyStatus, PIPELINE_STATUSES } from '@/types';
+import { TerritoryMap } from '@/components/dashboard/TerritoryMap';
 import { DealFlowTile } from '@/components/dashboard/DealFlowTile';
 import { PipelineFunnelTile } from '@/components/dashboard/PipelineFunnelTile';
 import { ScoreLandscapeTile } from '@/components/dashboard/ScoreLandscapeTile';
 import { TopOpportunitiesTile } from '@/components/dashboard/TopOpportunitiesTile';
-
-// Map renders SVG via d3 — SSR off
-const TerritoryMap = dynamic(
-  () => import('@/components/dashboard/TerritoryMap').then(m => m.TerritoryMap),
-  { ssr: false, loading: () => <div className="w-full h-full bg-bg-subtle rounded animate-pulse" /> }
-);
 
 interface TileProps {
   icon: React.ReactNode;
