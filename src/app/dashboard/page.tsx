@@ -2,7 +2,7 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { Map, TrendingUp, GitMerge, Crosshair, Bookmark, Radio } from 'lucide-react';
+import { Map, TrendingUp, GitMerge, Crosshair, Bookmark } from 'lucide-react';
 import { useAllCompanies } from '@/lib/useAllCompanies';
 import { useAppStore } from '@/store/useAppStore';
 import { Company, CompanyStatus, PIPELINE_STATUSES } from '@/types';
@@ -10,7 +10,6 @@ import { DealFlowTile } from '@/components/dashboard/DealFlowTile';
 import { PipelineFunnelTile } from '@/components/dashboard/PipelineFunnelTile';
 import { ScoreLandscapeTile } from '@/components/dashboard/ScoreLandscapeTile';
 import { TopOpportunitiesTile } from '@/components/dashboard/TopOpportunitiesTile';
-import { AgentActivityTile } from '@/components/dashboard/AgentActivityTile';
 
 // Map renders SVG via d3 — SSR off
 const TerritoryMap = dynamic(
@@ -149,10 +148,6 @@ export default function DashboardPage() {
           <TopOpportunitiesTile companies={allCompanies} getStatus={getStatus} />
         </Tile>
 
-        {/* Tile 6: Research agents */}
-        <Tile icon={<Radio size={12} />} label="Research agents" className="min-h-[200px]">
-          <AgentActivityTile />
-        </Tile>
       </div>
     </div>
   );
