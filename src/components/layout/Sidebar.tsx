@@ -161,9 +161,13 @@ export function Sidebar({ expanded, onToggle, onClose }: SidebarProps) {
           expanded ? 'px-4' : 'justify-center px-0',
         ].join(' ')}>
           {/* Avatar */}
-          <div className="w-6 h-6 rounded-full bg-bg-subtle border border-border-default flex items-center justify-center flex-shrink-0">
-            <span className="text-[9px] font-semibold text-text-secondary leading-none">RB</span>
-          </div>
+          <Image
+            src="/avatar.jpg"
+            alt="Profile"
+            width={24}
+            height={24}
+            className="w-6 h-6 rounded-full object-cover flex-shrink-0"
+          />
           {expanded && (
             <span className="text-[13px] font-medium text-text-secondary truncate">Profile</span>
           )}
