@@ -103,17 +103,17 @@ export function Sidebar({ expanded, onToggle, onClose }: SidebarProps) {
       {/* ── Right panel — wide when expanded, icon-only column when collapsed ── */}
       <div className={[
         'flex flex-col overflow-hidden transition-[width] duration-200',
-        expanded ? 'w-[192px]' : 'w-[48px]',
+        expanded ? 'w-[210px]' : 'w-[48px]',
       ].join(' ')}>
 
         {expanded ? (
           /* ── Expanded: labels + section headers ── */
           <>
-            <div className="pt-[18px] pb-3 px-4 flex-shrink-0 min-w-[192px]">
+            <div className="pt-[18px] pb-3 px-4 flex-shrink-0 min-w-[210px]">
               <span className="font-sans text-[14px] font-semibold text-text-primary tracking-wide">BBB</span>
             </div>
 
-            <div className="flex-1 overflow-y-auto min-w-[192px]">
+            <div className="flex-1 overflow-y-auto min-w-[210px]">
               <nav className="px-3 pb-2">
                 {NAV_GROUPS.map((group, gi) => (
                   <div key={group.label} className={gi > 0 ? 'mt-4' : ''}>
@@ -148,7 +148,7 @@ export function Sidebar({ expanded, onToggle, onClose }: SidebarProps) {
               </nav>
             </div>
 
-            <div className="flex-shrink-0 min-w-[192px]">
+            <div className="flex-shrink-0 min-w-[210px]">
               <div className="mx-3 h-px bg-border-subtle" />
               <div className="px-3 py-2">
                 <Link href="/settings" onClick={onClose}
@@ -165,7 +165,14 @@ export function Sidebar({ expanded, onToggle, onClose }: SidebarProps) {
         ) : (
           /* ── Collapsed: icon-only column ── */
           <>
-            <div className="flex-1 overflow-y-auto flex flex-col items-center pt-3 pb-2 min-w-[48px]">
+            {/* "B" avatar — matches height of expanded BBB header so nav icons stay on the same plane */}
+            <div className="flex items-center justify-center pt-[18px] pb-3 flex-shrink-0 min-w-[48px]">
+              <div className="w-7 h-7 rounded-full bg-bg-subtle border border-border-default flex items-center justify-center">
+                <span className="text-[11px] font-bold text-text-secondary leading-none">B</span>
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-y-auto flex flex-col items-center pb-2 min-w-[48px]">
               {NAV_GROUPS.map((group, gi) => (
                 <div key={group.label} className="w-full flex flex-col items-center">
                   {gi > 0 && <div className="w-5 h-px bg-border-subtle my-2" />}
