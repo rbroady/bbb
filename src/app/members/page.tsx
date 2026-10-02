@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Search, ChevronDown } from 'lucide-react';
 
 type Permission = 'Admin' | 'Member';
-type JobRole = 'Business' | 'Project Management' | 'Marketing';
+type JobRole = 'Business Development' | 'Project Management' | 'Creative + Marketing';
 type Status = 'Active' | 'Invited' | 'Pending';
 
 interface Member {
@@ -25,7 +25,7 @@ const MEMBERS: Member[] = [
     name: 'Robert Broadbent',
     email: 'rrbroadbent@gmail.com',
     permission: 'Admin',
-    roles: ['Marketing'],
+    roles: ['Creative + Marketing'],
     status: 'Active',
     isYou: true,
     avatar: '/avatar.jpg',
@@ -46,7 +46,7 @@ const MEMBERS: Member[] = [
     name: 'Matt Wilhelmsen',
     email: 'matt@mattwil.com',
     permission: 'Member',
-    roles: ['Business'],
+    roles: ['Business Development'],
     status: 'Pending',
     avatar: '/avatar-matt.jpg',
     initials: 'MW',
@@ -56,7 +56,7 @@ const MEMBERS: Member[] = [
     name: 'Pete Shockley',
     email: 'prshockley@gmail.com',
     permission: 'Member',
-    roles: ['Business'],
+    roles: ['Business Development'],
     status: 'Pending',
     avatar: '/avatar-pete.jpg',
     initials: 'PS',
@@ -64,9 +64,9 @@ const MEMBERS: Member[] = [
 ];
 
 const ROLE_COLORS: Record<JobRole, string> = {
-  'Business': 'bg-[#1e3a2f] text-[#4ade80] border border-[#2a5040]',
+  'Business Development': 'bg-[#1e3a2f] text-[#4ade80] border border-[#2a5040]',
   'Project Management': 'bg-[#1e2d3a] text-[#60a5fa] border border-[#1e3a52]',
-  'Marketing': 'bg-[#2d1e3a] text-[#c084fc] border border-[#3d1e52]',
+  'Creative + Marketing': 'bg-[#2d1e3a] text-[#c084fc] border border-[#3d1e52]',
 };
 
 const STATUS_CONFIG: Record<Status, { dot: string; label: string; sub?: string }> = {
@@ -144,7 +144,7 @@ export default function MembersPage() {
         />
         <FilterDropdown
           label="Job role" value={roleFilter}
-          options={['All', 'Business', 'Project Management', 'Marketing']}
+          options={['All', 'Business Development', 'Project Management', 'Creative + Marketing']}
           onChange={setRoleFilter}
         />
         <div className="ml-auto relative">
