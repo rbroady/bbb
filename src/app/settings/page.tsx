@@ -97,12 +97,12 @@ export default function SettingsPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-0.5 border-b border-border-subtle mb-6 -mx-0.5">
+      <div className="flex gap-0.5 border-b border-border-subtle mb-6 -mx-0.5 overflow-x-auto">
         {tabs.map(t => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`px-4 py-2 text-[13px] font-medium border-b-2 -mb-px transition-colors ${
+            className={`px-4 py-2 text-[13px] font-medium border-b-2 -mb-px transition-colors whitespace-nowrap ${
               tab === t.key
                 ? 'border-accent text-text-primary'
                 : 'border-transparent text-text-secondary hover:text-text-primary'
@@ -119,14 +119,14 @@ export default function SettingsPage() {
           <SettingsSection title="Hard Constraints">
             <p className="text-[12px] text-text-tertiary mb-4">Companies outside these ranges won't fit. Used directly in fit scoring.</p>
             <FieldRow label="Price Range" sub="Min and max acquisition price">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <NumberInput value={buyBox.minPrice / 1000} onChange={v => setBuyBox({ minPrice: v * 1000 })} prefix="$" suffix="K" />
                 <span className="text-text-tertiary text-[12px]">–</span>
                 <NumberInput value={buyBox.maxPrice / 1000} onChange={v => setBuyBox({ maxPrice: v * 1000 })} prefix="$" suffix="K" />
               </div>
             </FieldRow>
             <FieldRow label="Revenue Range">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <NumberInput value={buyBox.minRevenue / 1000} onChange={v => setBuyBox({ minRevenue: v * 1000 })} prefix="$" suffix="K" />
                 <span className="text-text-tertiary text-[12px]">–</span>
                 <NumberInput value={buyBox.maxRevenue / 1000} onChange={v => setBuyBox({ maxRevenue: v * 1000 })} prefix="$" suffix="K" />

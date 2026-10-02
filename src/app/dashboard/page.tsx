@@ -118,7 +118,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
 
         {/* Tile 1: Territory map — tall, spans 1 col but taller */}
-        <Tile icon={<Map size={12} />} label="Territory" className="row-span-2 min-h-[360px] lg:min-h-0">
+        <Tile icon={<Map size={12} />} label="Territory" className="row-span-2 min-h-[260px] md:min-h-[320px] lg:min-h-0">
           <TerritoryMap companies={allCompanies} />
         </Tile>
 

@@ -198,7 +198,7 @@ export default function DiscoverPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex items-center gap-2 mb-5 flex-wrap">
+      <div className="flex items-center gap-2 mb-5 flex-wrap w-full">
         <div className="relative">
           <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-text-tertiary" />
           <input

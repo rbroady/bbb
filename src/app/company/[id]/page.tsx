@@ -325,17 +325,17 @@ export default function CompanyPage({ params }: Props) {
             {/* Reputation */}
             <SectionHeader title="Reputation" />
             <div className="bg-bg-surface border border-border-subtle rounded-[10px] p-4 mb-2">
-              <div className="flex items-center gap-6 mb-4">
-                <div className="text-center">
-                  <p className="text-[32px] font-bold tabular-nums text-text-primary">{company.googleRating}</p>
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-4">
+                <div className="text-center sm:text-left flex sm:flex-col items-center sm:items-center gap-3 sm:gap-0">
+                  <p className="text-[32px] font-bold tabular-nums text-text-primary leading-none">{company.googleRating}</p>
                   <div className="flex">
                     {[1,2,3,4,5].map(i => (
                       <Star key={i} size={14} className={i <= Math.round(company.googleRating) ? 'text-warning fill-warning' : 'text-border-default'} />
                     ))}
                   </div>
-                  <p className="text-[11px] text-text-tertiary mt-1">{company.reviewCount} reviews</p>
+                  <p className="text-[11px] text-text-tertiary">{company.reviewCount} reviews</p>
                 </div>
-                <div className="grid grid-cols-2 gap-x-6 flex-1">
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2 flex-1">
                   <div>
                     <p className="text-[11px] font-medium text-positive mb-1">Praise</p>
                     {company.commonPraise.map(p => <p key={p} className="text-[12px] text-text-secondary">· {p}</p>)}
