@@ -34,10 +34,11 @@ const MEMBERS: Member[] = [
   {
     id: 'pat',
     name: 'Pat Rice',
-    email: '—',
-    permission: 'Member',
-    roles: ['Business'],
+    email: 'patjrice@gmail.com',
+    permission: 'Admin',
+    roles: ['Project Management'],
     status: 'Pending',
+    avatar: '/avatar-pat.jpg',
     initials: 'PR',
   },
   {
