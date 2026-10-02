@@ -169,7 +169,7 @@ export default function DiscoverPage() {
     <div className="px-4 md:px-8 py-6 md:py-8 max-w-[1100px]">
       {/* Header */}
       <div className="mb-5">
-        <h1 className="text-[24px] md:text-[28px] font-semibold text-text-primary leading-tight">Discover</h1>
+        <h1 className="font-serif text-[24px] md:text-[28px] font-semibold text-text-primary leading-tight">Discover</h1>
         <p className="text-[13px] text-text-secondary mt-1">
           {allCompanies.length} businesses tracked · {pipelineCount} in pipeline
         </p>

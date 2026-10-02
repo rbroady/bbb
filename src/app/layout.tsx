@@ -1,18 +1,17 @@
 import type { Metadata } from 'next';
-import { Instrument_Sans, Bitter } from 'next/font/google';
+import { Inter, Fraunces } from 'next/font/google';
 import './globals.css';
 import { AppShell } from '@/components/layout/AppShell';
 
-const instrumentSans = Instrument_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-instrument-sans',
+  variable: '--font-inter',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
 });
 
-const bitter = Bitter({
+const fraunces = Fraunces({
   subsets: ['latin'],
-  variable: '--font-bitter',
+  variable: '--font-fraunces',
   display: 'swap',
   weight: ['400', '600', '700'],
 });
@@ -32,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${instrumentSans.variable} ${bitter.variable}`}>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <body>
         <AppShell>{children}</AppShell>
       </body>

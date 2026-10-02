@@ -2,14 +2,20 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Compass, KanbanSquare, Settings, PlusCircle } from 'lucide-react';
+import { Compass, KanbanSquare, Settings, PlusCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const primaryNav = [
   { label: 'Pipeline', href: '/pipeline', icon: KanbanSquare },
   { label: 'Discover', href: '/', icon: Compass },
 ];
 
-export function Sidebar({ onClose }: { onClose?: () => void }) {
+interface SidebarProps {
+  expanded: boolean;
+  onToggle: () => void;
+  onClose?: () => void;
+}
+
+export function Sidebar({ expanded, onToggle, onClose }: SidebarProps) {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
@@ -18,92 +24,87 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
     return pathname.startsWith(href);
   };
 
+  const navClass = (href: string, muted = false) => [
+    'flex items-center py-2 rounded-md mb-0.5 text-[13px] font-medium transition-colors duration-100',
+    expanded ? 'gap-2.5 px-3 w-full' : 'justify-center w-9 mx-auto',
+    isActive(href)
+      ? 'bg-bg-active text-text-primary'
+      : muted
+        ? 'text-text-tertiary hover:text-text-secondary hover:bg-bg-hover'
+        : 'text-text-secondary hover:text-text-primary hover:bg-bg-hover',
+  ].join(' ');
+
   return (
-    <aside className="w-[232px] h-full bg-bg-app border-r border-border-subtle flex flex-col flex-shrink-0 overflow-y-auto">
+    <aside
+      className={[
+        'h-full bg-bg-app border-r border-border-subtle flex flex-col flex-shrink-0 overflow-hidden transition-[width] duration-200',
+        expanded ? 'w-[232px]' : 'w-[52px]',
+      ].join(' ')}
+    >
       {/* Logo */}
-      <Link href="/pipeline" onClick={onClose} className="px-5 pt-6 pb-4 block hover:opacity-80 transition-opacity">
-        <div className="flex items-center gap-2.5">
-          <Image src="/bbbicon.png" alt="BBB" width={36} height={36} className="flex-shrink-0" />
-          <span className="font-sans text-[32px] font-bold text-text-primary leading-none tracking-tight">
+      <Link
+        href="/pipeline"
+        onClick={onClose}
+        className={[
+          'flex items-center gap-2.5 hover:opacity-80 transition-opacity pt-5 pb-3',
+          expanded ? 'px-4' : 'justify-center px-0',
+        ].join(' ')}
+      >
+        <Image
+          src="/bbbicon.png"
+          alt="BBB"
+          width={28}
+          height={28}
+          className="flex-shrink-0 rounded-[7px]"
+        />
+        {expanded && (
+          <span className="font-sans text-[14px] font-semibold text-text-primary leading-none tracking-wide">
             BBB
           </span>
-        </div>
-        <p className="text-[11px] text-text-tertiary mt-1">Acquisition sourcing</p>
+        )}
       </Link>
 
-      <div className="mx-4 h-px bg-border-subtle mb-2" />
+      <div className="mx-3 h-px bg-border-subtle mb-2" />
 
       {/* Primary nav */}
-      <nav className="px-2">
+      <nav className={expanded ? 'px-2' : 'px-1'}>
         {primaryNav.map(({ label, href, icon: Icon }) => (
-          <Link
-            key={href}
-            href={href}
-            onClick={onClose}
-            className={`
-              flex items-center gap-2.5 px-3 py-2 rounded-md mb-0.5 text-[13px] font-medium
-              transition-colors duration-100
-              ${isActive(href)
-                ? 'bg-bg-active text-text-primary'
-                : 'text-text-secondary hover:text-text-primary hover:bg-bg-hover'
-              }
-            `}
-          >
+          <Link key={href} href={href} onClick={onClose} className={navClass(href)}>
             <Icon size={15} className="flex-shrink-0" />
-            {label}
+            {expanded && <span>{label}</span>}
           </Link>
         ))}
       </nav>
 
-      {/* Add company — separated with a small gap */}
-      <div className="mx-4 h-px bg-border-subtle mt-3 mb-2" />
-      <nav className="px-2 flex-1">
-        <Link
-          href="/add-company"
-          onClick={onClose}
-          className={`
-            flex items-center gap-2.5 px-3 py-2 rounded-md mb-0.5 text-[13px] font-medium
-            transition-colors duration-100
-            ${isActive('/add-company')
-              ? 'bg-bg-active text-text-primary'
-              : 'text-text-secondary hover:text-text-primary hover:bg-bg-hover'
-            }
-          `}
-        >
+      {/* Add company */}
+      <div className="mx-3 h-px bg-border-subtle mt-3 mb-2" />
+      <nav className={`${expanded ? 'px-2' : 'px-1'} flex-1`}>
+        <Link href="/add-company" onClick={onClose} className={navClass('/add-company')}>
           <PlusCircle size={15} className="flex-shrink-0" />
-          Add company
+          {expanded && <span>Add company</span>}
         </Link>
       </nav>
 
-      {/* Settings at bottom */}
-      <div className="mx-4 h-px bg-border-subtle mb-2" />
-      <nav className="px-2 mb-2">
-        <Link
-          href="/settings"
-          onClick={onClose}
-          className={`
-            flex items-center gap-2.5 px-3 py-2 rounded-md mb-0.5 text-[13px] font-medium
-            transition-colors duration-100
-            ${isActive('/settings')
-              ? 'bg-bg-active text-text-primary'
-              : 'text-text-tertiary hover:text-text-secondary hover:bg-bg-hover'
-            }
-          `}
-        >
+      {/* Settings */}
+      <div className="mx-3 h-px bg-border-subtle mb-2" />
+      <nav className={expanded ? 'px-2 mb-1' : 'px-1 mb-1'}>
+        <Link href="/settings" onClick={onClose} className={navClass('/settings', true)}>
           <Settings size={15} className="flex-shrink-0" />
-          Settings
+          {expanded && <span>Settings</span>}
         </Link>
       </nav>
 
-      {/* Footer */}
-      <div className="px-4 py-4">
-        <div className="text-[11px] text-text-disabled leading-relaxed">
-          <p className="font-medium text-text-tertiary mb-0.5">Buy Box</p>
-          <p>HVAC · Plumbing · Pest</p>
-          <p>OR / WA / ID</p>
-          <p>$500K – $3M</p>
-        </div>
-      </div>
+      {/* Toggle */}
+      <button
+        onClick={onToggle}
+        className={[
+          'flex items-center py-3 text-text-disabled hover:text-text-tertiary transition-colors',
+          expanded ? 'justify-end px-4' : 'justify-center px-0',
+        ].join(' ')}
+        aria-label={expanded ? 'Collapse sidebar' : 'Expand sidebar'}
+      >
+        {expanded ? <ChevronLeft size={13} /> : <ChevronRight size={13} />}
+      </button>
     </aside>
   );
 }

@@ -254,7 +254,7 @@ export default function AddCompanyPage() {
       </button>
 
       <div className="mb-6">
-        <h1 className="text-[22px] font-semibold text-text-primary">Add company</h1>
+        <h1 className="font-serif text-[22px] font-semibold text-text-primary">Add company</h1>
         <p className="text-[13px] text-text-secondary mt-0.5">
           Manually enter a business to track and score against your Buy Box.
         </p>
