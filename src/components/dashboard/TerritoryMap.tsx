@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import * as d3geo from 'd3-geo';
 import * as topojson from 'topojson-client';
+import type { Topology } from 'topojson-specification';
 import { Company, CompanyStatus, PIPELINE_STATUSES } from '@/types';
 import { formatCurrency } from '@/lib/formatting';
 
@@ -67,9 +68,7 @@ export function TerritoryMap({ companies }: Props) {
     if (size.w === 0 || size.h === 0) return;
 
     const run = async () => {
-      // dynamic import avoids bundling the large JSON at build time
-      const atlas = await import('us-atlas/states-110m.json');
-      const topo = atlas.default as unknown as TopoJSON.Topology;
+      const topo: Topology = await fetch('/us-states.json').then(r => r.json());
       const statesGeo = topojson.feature(topo, topo.objects.states as TopoJSON.GeometryCollection);
 
       const projection = d3geo.geoMercator().fitExtent(
