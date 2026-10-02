@@ -19,12 +19,12 @@ const STATUS_LABELS: Record<string, string> = {
 
 const statusStyles: Record<string, string> = {
   new: 'bg-bg-subtle text-text-secondary',
-  saved: 'bg-accent-soft text-accent-ink',
+  saved: 'bg-positive-soft text-positive',
   passed: 'bg-bg-subtle text-text-disabled',
   contacted: 'bg-info-soft text-info',
   evaluating: 'bg-warning-soft text-warning',
-  loi: 'bg-positive-soft text-positive',
-  diligence: 'bg-positive-soft text-positive',
+  loi: 'bg-negative-soft text-negative',
+  diligence: 'bg-negative-soft text-negative',
   closed: 'bg-accent-soft text-accent-ink',
   Active: 'bg-positive-soft text-positive',
   Paused: 'bg-bg-subtle text-text-secondary',
