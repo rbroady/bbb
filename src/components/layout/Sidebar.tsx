@@ -47,7 +47,7 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: 'Manage',
     items: [
-      { label: 'Members', icon: Users, disabled: true },
+      { label: 'Members', href: '/members', icon: Users },
     ],
   },
 ];
