@@ -21,12 +21,12 @@
   --color-border-default: #2e2e2e;
   --color-border-strong:  #3d3d3d;
 
-  /* Accent — moss green brightened for dark bg */
-  --color-accent:       #7eb356;
-  --color-accent-hover: #6da048;
-  --color-accent-soft:  #1c2a14;
-  --color-accent-softer:#161f10;
-  --color-accent-ink:   #b8e090;
+  /* Accent — monochrome */
+  --color-accent:       #c8c8c8;
+  --color-accent-hover: #b0b0b0;
+  --color-accent-soft:  #222222;
+  --color-accent-softer:#1e1e1e;
+  --color-accent-ink:   #e8e8e8;
 
   /* Semantic */
   --color-positive:      #52a94a;
