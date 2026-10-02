@@ -149,7 +149,7 @@ export default function CompanyPage({ params }: Props) {
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-3">
           <div>
             <div className="flex items-center gap-3 mb-1 flex-wrap">
-              <h1 className="font-serif text-[22px] md:text-[26px] font-semibold text-text-primary leading-tight">{company.name}</h1>
+              <h1 className="font-serif text-[22px] font-normal text-text-primary leading-tight">{company.name}</h1>
               <StatusChip status={currentStatus} />
             </div>
             <p className="text-[13px] text-text-secondary">

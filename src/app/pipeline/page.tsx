@@ -100,7 +100,7 @@ export default function PipelinePage() {
       {/* Header */}
       <div className="flex items-start justify-between mb-5">
         <div>
-          <h1 className="font-serif text-[22px] font-semibold text-text-primary">Pipeline</h1>
+          <h1 className="font-serif text-[22px] font-normal text-text-primary">Pipeline</h1>
           <p className="text-[13px] text-text-secondary mt-0.5">
             {pipelineCompanies.length} companies · {formatCurrency(totalValue, true)} tracked value
           </p>

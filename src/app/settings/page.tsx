@@ -92,7 +92,7 @@ export default function SettingsPage() {
   return (
     <div className="px-4 md:px-8 py-6 md:py-8 max-w-[820px]">
       <div className="mb-5">
-        <h1 className="font-serif text-[22px] font-semibold text-text-primary">Settings</h1>
+        <h1 className="font-serif text-[22px] font-normal text-text-primary">Settings</h1>
         <p className="text-[13px] text-text-secondary mt-0.5">Configure your acquisition criteria and research agents.</p>
       </div>
 
