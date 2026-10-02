@@ -214,7 +214,7 @@ export default function PipelinePage() {
         <div className="mt-6 p-6 bg-bg-subtle rounded-lg border border-border-subtle text-center">
           <p className="text-[13px] text-text-tertiary">
             No companies in your pipeline yet.{' '}
-            <button onClick={() => router.push('/')} className="text-accent hover:underline">
+            <button onClick={() => router.push('/discover')} className="text-accent hover:underline">
               Go to Discover
             </button>{' '}
             to save companies.

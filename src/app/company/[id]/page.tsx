@@ -138,7 +138,7 @@ export default function CompanyPage({ params }: Props) {
       <div className="max-w-[920px]">
         {/* Back */}
         <button
-          onClick={() => router.push('/')}
+          onClick={() => router.push('/discover')}
           className="flex items-center gap-1.5 text-[12px] text-text-secondary hover:text-text-primary mb-5 transition-colors"
         >
           <ArrowLeft size={13} />
@@ -167,7 +167,7 @@ export default function CompanyPage({ params }: Props) {
                   Save
                 </button>
                 <button
-                  onClick={() => { setCompanyStatus(company.id, 'passed'); router.push('/'); }}
+                  onClick={() => { setCompanyStatus(company.id, 'passed'); router.push('/discover'); }}
                   className="flex items-center gap-1.5 text-[12px] px-3 py-1.5 rounded-lg border border-border-default text-text-secondary font-medium hover:bg-bg-hover transition-colors"
                 >
                   <X size={13} />

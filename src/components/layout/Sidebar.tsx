@@ -7,7 +7,7 @@ import { Compass, KanbanSquare, Settings, PlusCircle, ChevronLeft, ChevronRight,
 const primaryNav = [
   { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { label: 'Pipeline', href: '/pipeline', icon: KanbanSquare },
-  { label: 'Discover', href: '/', icon: Compass },
+  { label: 'Discover', href: '/discover', icon: Compass },
 ];
 
 interface SidebarProps {
@@ -22,7 +22,7 @@ export function Sidebar({ expanded, onToggle, onClose }: SidebarProps) {
   const isActive = (href: string) => {
     if (href === '/dashboard') return pathname === '/dashboard';
     if (href === '/pipeline') return pathname.startsWith('/pipeline');
-    if (href === '/') return pathname === '/' || pathname.startsWith('/company');
+    if (href === '/discover') return pathname === '/discover' || pathname.startsWith('/company');
     return pathname.startsWith(href);
   };
 

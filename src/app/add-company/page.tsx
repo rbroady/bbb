@@ -227,7 +227,7 @@ export default function AddCompanyPage() {
           <p className="text-[13px] text-text-secondary mb-5">It&apos;s now in Discover and scored against your Buy Box.</p>
           <div className="flex justify-center gap-3">
             <button
-              onClick={() => router.push('/')}
+              onClick={() => router.push('/discover')}
               className="h-9 px-4 text-[13px] font-medium bg-accent text-text-inverse rounded-lg hover:bg-accent-hover transition-colors"
             >
               View in Discover
